@@ -3,6 +3,7 @@ const cors = require("cors");
 require("dotenv").config();
 const chatRoutes = require("./routes/chat");
 const historyRoutes = require("./models/History");
+const errorHandler = require("./middleware/errorHandler");
 
 console.log(process.env.MONGO_URI);
 const connectDB = require("./config/database");
@@ -13,6 +14,11 @@ app.use(cors());
 app.use(express.json());
 app.use("/api/History", historyRoutes);
 app.use("/api/chat", chatRoutes);
+// Routes
+app.use("/api/chat", chatRoutes);
+
+// Error handler (must be last)
+app.use(errorHandler);
 
 connectDB();
 

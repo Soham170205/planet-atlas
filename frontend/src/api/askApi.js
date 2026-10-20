@@ -6,6 +6,6 @@ const API = axios.create({
 });
 
 export const askQuestion = async (question) => {
-  const response = await API.post("/ask", { question });
+  const response = await API.post("/chat", { question });
   return response.data;
 };
